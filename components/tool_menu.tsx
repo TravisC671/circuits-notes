@@ -1,53 +1,76 @@
+import { JSX } from "react";
+import { useCanvas } from "../lib/store";
+import { Tools } from "../lib/types";
+
+const tools: {name: Partial<Tools>, icon: JSX.Element}[] = [
+  {
+    name: "Grab",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg"
+           fill="none"
+           viewBox="0 0 24 24"
+           strokeWidth="1.5"
+           stroke="currentColor"
+           className="h-5 w-5">
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M10.05 4.575a1.575 1.575 0 1 0-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 0 1 3.15 0v1.5m-3.15 0 .075 5.925m3.075.75V4.575m0 
+            0a1.575 1.575 0 0 1 3.15 0V15M6.9 7.575a1.575 1.575 0 1 0-3.15 0v8.175a6.75 6.75 0 0 0 6.75 6.75h2.018a5.25 5.25 0 0 0 
+            3.712-1.538l1.732-1.732a5.25 5.25 0 0 0 1.538-3.712l.003-2.024a.668.668 0 0 1 .198-.471 1.575 1.575 0 1 0-2.228-2.228 
+            3.818 3.818 0 0 0-1.12 2.687M6.9 7.575V12m6.27 4.318A4.49 4.49 0 0 1 16.35 15m.002 0h-.002"
+        />
+      </svg>
+    ),
+  },
+  {
+    name: "Wire",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg"
+           className="h-5 w-5"
+           fill="none"
+           viewBox="0 0 24 24"
+           stroke="currentColor">
+        <line x1={4} y1={4} x2={20} y2={20} strokeLinecap="round" strokeWidth={2} />
+      </svg>
+    ),
+  },
+  {
+    name: "Resistor",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg"
+           className="h-5 w-5"
+           fill="none"
+           viewBox="0 0 19 19"
+           stroke="currentColor">
+        <path
+          d="M0.821549 0.757095L3.9611 3.89665L8.36715 2.03619L4.88909 9.58718L12.4401 6.10912L8.87717 13.5753L16.8524 10.5215L14.6956 14.7147L17.7503 17.7694"
+          strokeWidth="1.41795"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
+];
 
 export default function ToolMenu() {
-    return (<ul className="menu menu-horizontal bg-base-200 rounded-box absolute bottom-0">
-  <li>
-    <a>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-      </svg>
-    </a>
-  </li>
-  <li>
-    <a>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    </a>
-  </li>
-  <li>
-    <a>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-      </svg>
-    </a>
-  </li>
-</ul>)
+  const tool = useCanvas((state) => state.tool);
+  const setTool = useCanvas((state) => state.setTool);
+
+  console.log(tool)
+
+  return (
+    <ul className="menu menu-horizontal bg-base-200 rounded-box absolute bottom-0">
+      {tools.map(({ name, icon }) => (
+        <li key={name}>
+          <button
+            onClick={() => setTool(name)}
+            style={{backgroundColor: tool === name ? "var(--color-neutral)" : "transparent", color: tool === name ? "" : "var(--color-primary)"}}
+          >
+            {icon}
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
 }
