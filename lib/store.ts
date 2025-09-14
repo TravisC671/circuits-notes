@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { CircuitComponent, coordinate, Tools, Wire } from "./types";
+import type { CircuitComponent, Tools, Wire } from "./types";
 
 type CircuitStore = {
   tool: Tools;

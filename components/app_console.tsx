@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function ConsoleDisplay() {
   const [logs, setLogs] = useState<string[]>([]);
