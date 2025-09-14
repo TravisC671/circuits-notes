@@ -1,7 +1,24 @@
 export type coordinate = {
-    x: number, y: number
+  x: number;
+  y: number;
+};
+
+export type transform = {
+  rot: number;
+  pos: coordinate
+};
+
+export type Wire = {
+  id: string;
+  start: coordinate;
+  end: coordinate;
+};
+
+export type CircuitComponentType = "Resistor" | "Power"
+
+export type CircuitComponent = {
+    type: CircuitComponentType;
+    transform: transform
 }
 
-export type Wire = {start: coordinate, end: coordinate};
-
-export type Tools = "Wire" | "Grab" | "Resistor"
+export type Tools = "Wire" | "FastWire" | "Screenshot" | "Resistor" | "Power";

@@ -1,19 +1,14 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import ToolMenu from '../components/tool_menu'
-import Canvas from '../components/canvas'
-
+import "./App.css";
+import ToolMenu from "../components/tool_menu";
+import Canvas from "../components/canvas";
+import ConsoleDisplay from "../components/app_console";
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <Canvas />
       <ToolMenu />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,17 +1,23 @@
-import { create } from 'zustand'
-import { coordinate, Tools, Wire } from './types';
+import { create } from "zustand";
+import type { CircuitComponent, coordinate, Tools, Wire } from "./types";
 
-
-type CanvasStore = {
+type CircuitStore = {
   tool: Tools;
   wires: Wire[];
+  components: CircuitComponent[];
   setTool: (tool: Tools) => void;
   addWire: (wires: Wire) => void;
-}
+  addComponent: (component: CircuitComponent) => void;
+  clear: () => void;
+};
 
-export const useCanvas = create<CanvasStore>((set) => ({
-  tool: "Grab",
+export const useCircuitStore = create<CircuitStore>((set) => ({
+  tool: "Wire",
   wires: [],
+  components: [],
   setTool: (tool) => set({ tool: tool }),
-  addWire: (wires) => set((state) => ({wires: [...state.wires, wires]}))
-}))
+  addWire: (wire) => set((state) => ({ wires: [...state.wires, wire] })),
+  addComponent: (component) =>
+    set((state) => ({ components: [...state.components, component] })),
+  clear: () => set({ wires: [], components: [] }),
+}));
