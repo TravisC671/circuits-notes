@@ -117,7 +117,7 @@ export default function Canvas() {
         onPointerMove={HandleMouseMove}
       >
         <style>
-          {`:root { --wire-color: black; --circuit-bg: var(--color-base-100); }`}
+          {`:root { --wire-color: gray; --circuit-bg: var(--color-base-100); }`}
         </style>
         <defs>
           <pattern
