@@ -26,7 +26,7 @@ export default function Canvas() {
     null
   );
 
-  let gridScale = 80;
+  let gridScale = 20;
 
   const handlePointerDown = (e: React.PointerEvent<SVGSVGElement>) => {
     if (e.pointerType === "touch") return;
